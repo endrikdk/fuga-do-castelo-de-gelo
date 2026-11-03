@@ -38,4 +38,24 @@ position = Vector2(192, 196)
 wait_time = 2.0
 autostart = true
 
+[node name="Relogio" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Vida" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 2.0
+theme_override_font_sizes/font_size = 11
+text = "Vida: 3"
+
+[node name="Tempo" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 16.0
+theme_override_font_sizes/font_size = 11
+text = "Tempo: 60"
+
 [connection signal="timeout" from="Horda" to="." method="_on_horda_timeout"]
+[connection signal="timeout" from="Relogio" to="." method="_on_relogio_timeout"]
