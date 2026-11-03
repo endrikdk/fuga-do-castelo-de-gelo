@@ -141,6 +141,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_raifr"]
 size = Vector2(10, 6)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurtbox"]
+radius = 6.0
+
 [node name="Jogador" type="CharacterBody2D" unique_id=1578613508 groups=["player"]]
 collision_layer = 2
 motion_mode = 1
@@ -154,3 +157,11 @@ animation = &"baixo"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1826765192]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_raifr")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_hurtbox")
