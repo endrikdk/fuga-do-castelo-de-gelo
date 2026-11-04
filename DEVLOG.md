@@ -20,3 +20,10 @@ O que fiz: a saída. Um portão escondido no canto da arena que só aparece quan
 Como fiz: com ajuda de IA (Claude), seguindo a ficha Fuga da folha da Aula 09 (próxima etapa, fora da tag aula-09). O sprite é o portão do castelo do próprio Tiny Town. Testei ficando em cima do lugar da saída antes de ela abrir (nada acontece) e entrando nela depois (vitória).
 O que travou: na primeira posição, no canto de cima, o portão ficava embaixo do placar.
 Como resolvi: mudei a saída para o canto de baixo, à direita, longe do jogador e do placar.
+
+## Aula 10 — 28/10 (feita em 04/11, atrasada)
+
+O que fiz: o inimigo agora calcula o caminho e dá a volta nos pilares, em vez de ficar empurrando a parede; e o jogador ganhou o ataque no Espaço, um clarão em volta dele que derruba quem estiver dentro, com recarga de 0,4 s e o placar de abates.
+Como fiz: com ajuda de IA (Claude), seguindo a folha de consulta da Aula 10, um commit por parte. O mapa do chão livre (Navegacao) tem o contorno por fora do muro e o Agent Radius padrão, 10. Testei pondo o inimigo atrás de cada pilar em seis posições: com o script da Aula 09 ele chegou 0 vezes de 6, com o agente chegou 6 de 6.
+O que travou: o golpe chama o levar_golpe() do inimigo; se o código do jogador entrasse antes do código do inimigo, apertar Espaço perto de um inimigo dava erro.
+Como resolvi: commitei primeiro a tecla e o círculo do golpe na cena e depois todo o código junto (jogador, inimigo e arena), para o jogo nunca ficar quebrado entre um commit e outro.
