@@ -21,7 +21,12 @@ func _on_horda_timeout() -> void:
 	# A horda aperta: cada inimigo chega um pouco mais cedo que o anterior.
 	horda.wait_time = max(0.5, horda.wait_time * 0.95)
 
+# Ficha do tipo Fuga (folha da Aula 09): o relógio não vence mais, ele abre a saída.
 func _on_relogio_timeout() -> void:
+	$Saida.visible = true
+	$Saida.monitoring = true
+
+func _on_saida_body_entered(_body: Node2D) -> void:
 	vencer()
 
 # call_deferred: troca de cena só no fim do quadro, quando a física terminou.

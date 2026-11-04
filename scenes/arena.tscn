@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" path="res://entities/jogador.tscn" id="2_olpmc"]
 [ext_resource type="Script" path="res://scripts/arena.gd" id="3_arena"]
 [ext_resource type="PackedScene" path="res://entities/inimigo.tscn" id="4_inimigo"]
+[ext_resource type="Texture2D" path="res://sprites/tiny-town.png" id="5_town"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_saida"]
+radius = 10.0
 
 [node name="Arena" type="Node2D" unique_id=1443955068]
 script = ExtResource("3_arena")
@@ -16,6 +20,21 @@ tile_set = ExtResource("1_wl4x5")
 [node name="muro" type="TileMapLayer" parent="." unique_id=725911923]
 tile_map_data = PackedByteArray("AAAAAAAAAAAGAAoAAAAAAAEAAAAGAAoAAAAAAAIAAAAGAAoAAAAAAAMAAAAGAAoAAAAAAAQAAAAGAAoAAAAAAAUAAAAGAAoAAAAAAAYAAAAGAAoAAAAAAAcAAAAGAAoAAAAAAAgAAAAGAAoAAAAAAAkAAAAGAAoAAAAAAAoAAAAGAAoAAAAAAAsAAAAGAAoAAAAAAAwAAAAGAAoAAAAAAA0AAAAGAAoAAAABAAAAAAAGAAoAAAABAA0AAAAGAAoAAAACAAAAAAAGAAoAAAACAA0AAAAGAAoAAAADAAAAAAAGAAoAAAADAA0AAAAGAAoAAAAEAAAAAAAGAAoAAAAEAA0AAAAGAAoAAAAFAAAAAAAGAAoAAAAFAA0AAAAGAAoAAAAGAAAAAAAGAAoAAAAGAA0AAAAGAAoAAAAHAAAAAAAGAAoAAAAHAA0AAAAGAAoAAAAIAAAAAAAGAAoAAAAIAA0AAAAGAAoAAAAJAAAAAAAGAAoAAAAJAA0AAAAGAAoAAAAKAAAAAAAGAAoAAAAKAA0AAAAGAAoAAAALAAAAAAAGAAoAAAALAA0AAAAGAAoAAAAMAAAAAAAGAAoAAAAMAA0AAAAGAAoAAAANAAAAAAAGAAoAAAANAA0AAAAGAAoAAAAOAAAAAAAGAAoAAAAOAA0AAAAGAAoAAAAPAAAAAAAGAAoAAAAPAA0AAAAGAAoAAAAQAAAAAAAGAAoAAAAQAA0AAAAGAAoAAAARAAAAAAAGAAoAAAARAA0AAAAGAAoAAAASAAAAAAAGAAoAAAASAA0AAAAGAAoAAAATAAAAAAAGAAoAAAATAA0AAAAGAAoAAAAUAAAAAAAGAAoAAAAUAA0AAAAGAAoAAAAVAAAAAAAGAAoAAAAVAA0AAAAGAAoAAAAWAAAAAAAGAAoAAAAWAA0AAAAGAAoAAAAXAAAAAAAGAAoAAAAXAAEAAAAGAAoAAAAXAAIAAAAGAAoAAAAXAAMAAAAGAAoAAAAXAAQAAAAGAAoAAAAXAAUAAAAGAAoAAAAXAAYAAAAGAAoAAAAXAAcAAAAGAAoAAAAXAAgAAAAGAAoAAAAXAAkAAAAGAAoAAAAXAAoAAAAGAAoAAAAXAAsAAAAGAAoAAAAXAAwAAAAGAAoAAAAXAA0AAAAGAAoAAAAFAAMAAAAGAAoAAAAFAAQAAAAGAAoAAAAGAAMAAAAGAAoAAAAGAAQAAAAGAAoAAAARAAMAAAAGAAoAAAARAAQAAAAGAAoAAAASAAMAAAAGAAoAAAASAAQAAAAGAAoAAAAFAAkAAAAGAAoAAAAFAAoAAAAGAAoAAAAGAAkAAAAGAAoAAAAGAAoAAAAGAAoAAAARAAkAAAAGAAoAAAARAAoAAAAGAAoAAAASAAkAAAAGAAoAAAASAAoAAAAGAAoAAAA=")
 tile_set = ExtResource("1_wl4x5")
+
+[node name="Saida" type="Area2D" parent="."]
+visible = false
+position = Vector2(352, 192)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Saida"]
+texture = ExtResource("5_town")
+region_enabled = true
+region_rect = Rect2(48, 144, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
+shape = SubResource("CircleShape2D_saida")
 
 [node name="Jogador" parent="." unique_id=1578613508 instance=ExtResource("2_olpmc")]
 position = Vector2(192, 112)
@@ -59,3 +78,4 @@ text = "Tempo: 60"
 
 [connection signal="timeout" from="Horda" to="." method="_on_horda_timeout"]
 [connection signal="timeout" from="Relogio" to="." method="_on_relogio_timeout"]
+[connection signal="body_entered" from="Saida" to="." method="_on_saida_body_entered"]

@@ -14,3 +14,9 @@ Como fiz: com ajuda de IA (Claude), seguindo a folha de consulta da Aula 09, um 
 O que travou: as fontes da folha (48 no fim e 32 no placar) são para uma tela de 1152 px, e a minha arena tem 384 px; o texto não cabia.
 Como resolvi: usei um terço do tamanho, 16 e 11, que fica na mesma proporção.
 
+## Ficha do tipo Fuga — 04/11
+
+O que fiz: a saída. Um portão escondido no canto da arena que só aparece quando o relógio zera; antes disso ele não percebe ninguém. Encostar nele depois de aberto vence a partida.
+Como fiz: com ajuda de IA (Claude), seguindo a ficha Fuga da folha da Aula 09 (próxima etapa, fora da tag aula-09). O sprite é o portão do castelo do próprio Tiny Town. Testei ficando em cima do lugar da saída antes de ela abrir (nada acontece) e entrando nela depois (vitória).
+O que travou: na primeira posição, no canto de cima, o portão ficava embaixo do placar.
+Como resolvi: mudei a saída para o canto de baixo, à direita, longe do jogador e do placar.
