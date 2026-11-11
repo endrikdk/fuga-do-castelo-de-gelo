@@ -25,12 +25,12 @@ func _on_horda_timeout() -> void:
 	add_child(inimigo)
 
 	# A horda aperta: cada inimigo chega um pouco mais cedo que o anterior.
-	# Ajuste meu: a folha usa 0.95 e mínimo 0.5; com 0.96 e mínimo 0.8 nascem cerca de 59 gárgulas em 60 s, em vez de 87.
+	# Ajuste pedido por mim, valores escolhidos com ajuda de IA: a folha usa 0.95 e mínimo 0.5; com 0.96 e mínimo 0.8 nascem cerca de 59 gárgulas em 60 s, em vez de 87.
 	horda.wait_time = max(0.8, horda.wait_time * 0.96)
 
 # Ficha do tipo Fuga (folha da Aula 09): o relógio não vence mais, ele abre a saída.
 func _on_relogio_timeout() -> void:
-	# Porta de madeira do muro de cima: troca os dois tiles fechados pelos abertos, que não têm colisão.
+	# Porta de madeira do muro de cima (feito com ajuda de IA): troca os dois tiles fechados pelos abertos, que não têm colisão.
 	$Navegacao/muro.set_cell(Vector2i(11, 0), 0, Vector2i(10, 2))
 	$Navegacao/muro.set_cell(Vector2i(12, 0), 0, Vector2i(11, 2))
 	$Saida.monitoring = true

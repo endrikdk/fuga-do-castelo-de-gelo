@@ -11,7 +11,7 @@ var pode_atacar := true
 var olhando := "baixo"
 var atacando := false
 
-# Hitbox do golpe: fica na frente do lado em que ele olha, não em volta dele.
+# Hitbox do golpe (feito com ajuda de IA): fica na frente do lado em que ele olha, não em volta dele.
 const FRENTE := {
 	"baixo": [Vector2(0, 16), 0.0],
 	"cima": [Vector2(0, -8), 0.0],
@@ -36,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 	velocity = direcao * velocidade
 	move_and_slide()
 
-	# Sprite do herói: durante o golpe a animação de ataque não é interrompida.
+	# Sprite do herói (feito com ajuda de IA): durante o golpe a animação de ataque não é interrompida.
 	if atacando:
 		return
 
@@ -75,7 +75,7 @@ func levar_dano() -> void:
 	invencivel = false
 
 func atacar() -> void:
-	# Animação de ataque do herói: o golpe acerta quando a espada chega na frente.
+	# Animação de ataque do herói (feito com ajuda de IA): o golpe acerta quando a espada chega na frente.
 	pode_atacar = false
 	atacando = true
 	anim.play("ataque_" + olhando)
