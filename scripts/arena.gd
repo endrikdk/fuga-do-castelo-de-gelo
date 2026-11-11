@@ -25,7 +25,8 @@ func _on_horda_timeout() -> void:
 	add_child(inimigo)
 
 	# A horda aperta: cada inimigo chega um pouco mais cedo que o anterior.
-	horda.wait_time = max(0.5, horda.wait_time * 0.95)
+	# Ajuste meu: a folha usa 0.95 e mínimo 0.5; com 0.96 e mínimo 0.8 nascem cerca de 59 gárgulas em 60 s, em vez de 87.
+	horda.wait_time = max(0.8, horda.wait_time * 0.96)
 
 # Ficha do tipo Fuga (folha da Aula 09): o relógio não vence mais, ele abre a saída.
 func _on_relogio_timeout() -> void:
