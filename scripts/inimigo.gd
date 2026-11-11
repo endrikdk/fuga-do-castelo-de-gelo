@@ -18,7 +18,7 @@ func _physics_process(_delta: float) -> void:
 	velocity = global_position.direction_to(proximo) * velocidade
 	move_and_slide()
 
-	# Arte do tema: perto do jogador a gárgula ruge, longe ela anda.
+	# Arte do tema (feito com ajuda de IA): perto do jogador a gárgula ruge, longe ela anda.
 	if global_position.distance_to(jogador.global_position) < 16:
 		anim.play("atacar")
 	else:
