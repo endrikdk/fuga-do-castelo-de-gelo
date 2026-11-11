@@ -8,11 +8,20 @@ extends CharacterBody2D
 
 var invencivel := false
 var pode_atacar := true
+var olhando := "baixo"
+var atacando := false
+
+# Hitbox do golpe: fica na frente do lado em que ele olha, não em volta dele.
+const FRENTE := {
+	"baixo": [Vector2(0, 16), 0.0],
+	"cima": [Vector2(0, -8), 0.0],
+	"direita": [Vector2(11, 1), PI / 2],
+	"esquerda": [Vector2(-11, 1), PI / 2],
+}
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var ataque: Area2D = $Ataque
-@onready var golpe: ColorRect = $Ataque/Golpe
 
 func _process(_delta: float) -> void:
 	# Tem inimigo encostando em mim?
@@ -27,20 +36,30 @@ func _physics_process(_delta: float) -> void:
 	velocity = direcao * velocidade
 	move_and_slide()
 
+	# Sprite do herói: durante o golpe a animação de ataque não é interrompida.
+	if atacando:
+		return
+
+	# Parado: volta para o primeiro quadro do lado em que estava olhando.
 	if direcao == Vector2.ZERO:
+		anim.play(olhando)
 		anim.stop()
 		return
 
+	# Guarda para onde ele olha, para o ataque sair virado para o mesmo lado.
 	if abs(direcao.x) > abs(direcao.y):
 		if direcao.x > 0:
-			anim.play("direita")
+			olhando = "direita"
 		else:
-			anim.play("esquerda")
+			olhando = "esquerda"
 	else:
 		if direcao.y > 0:
-			anim.play("baixo")
+			olhando = "baixo"
 		else:
-			anim.play("cima")
+			olhando = "cima"
+	ataque.position = FRENTE[olhando][0]
+	ataque.rotation = FRENTE[olhando][1]
+	anim.play(olhando)
 
 func levar_dano() -> void:
 	vida -= 1
@@ -56,14 +75,18 @@ func levar_dano() -> void:
 	invencivel = false
 
 func atacar() -> void:
-	# Acerta todo inimigo que estiver dentro do círculo neste quadro.
+	# Animação de ataque do herói: o golpe acerta quando a espada chega na frente.
+	pode_atacar = false
+	atacando = true
+	anim.play("ataque_" + olhando)
+	await get_tree().create_timer(0.1).timeout
 	for inimigo in ataque.get_overlapping_bodies():
 		inimigo.levar_golpe()
 
-	# O clarão dura 0,1 s; o próximo golpe só sai 0,4 s depois deste.
-	pode_atacar = false
-	golpe.visible = true
-	await get_tree().create_timer(0.1).timeout
-	golpe.visible = false
-	await get_tree().create_timer(0.3).timeout
+	await anim.animation_finished
+	atacando = false
+	anim.play(olhando)
+	anim.stop()
+	# O próximo golpe só sai 0,15 s depois do fim deste.
+	await get_tree().create_timer(0.15).timeout
 	pode_atacar = true

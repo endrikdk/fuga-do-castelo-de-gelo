@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5jo8h772a66i"
-path="res://.godot/imported/personagem.png-a6629aabfbdefb924752dfdcf5c1cfea.ctex"
+uid="uid://dxkk2iww510lu"
+path="res://.godot/imported/heroi.png-effd2ea0d6a9d4fa8ee402333d75cac1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/personagem.png"
-dest_files=["res://.godot/imported/personagem.png-a6629aabfbdefb924752dfdcf5c1cfea.ctex"]
+source_file="res://sprites/heroi.png"
+dest_files=["res://.godot/imported/heroi.png-effd2ea0d6a9d4fa8ee402333d75cac1.ctex"]
 
 [params]
 
