@@ -4,15 +4,14 @@
 [ext_resource type="PackedScene" path="res://entities/jogador.tscn" id="2_olpmc"]
 [ext_resource type="Script" path="res://scripts/arena.gd" id="3_arena"]
 [ext_resource type="PackedScene" path="res://entities/inimigo.tscn" id="4_inimigo"]
-[ext_resource type="Texture2D" path="res://sprites/tiny-town.png" id="5_town"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_chao"]
 vertices = PackedVector2Array(314, 186, 358, 198, 26, 198, 262, 186, 122, 186, 70, 186, 314, 90, 314, 38, 358, 26, 26, 26, 262, 38, 70, 134, 262, 134, 122, 134, 122, 90, 262, 90, 122, 38, 70, 38, 314, 134, 70, 90)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(5, 4, 2), PackedInt32Array(6, 7, 8, 1), PackedInt32Array(9, 8, 7, 10), PackedInt32Array(5, 2, 9, 11), PackedInt32Array(12, 3, 4, 13), PackedInt32Array(14, 10, 15, 13, 11), PackedInt32Array(10, 14, 16), PackedInt32Array(9, 10, 16), PackedInt32Array(9, 16, 17), PackedInt32Array(1, 0, 18), PackedInt32Array(6, 1, 18), PackedInt32Array(6, 18, 12, 15), PackedInt32Array(15, 12, 13), PackedInt32Array(19, 14, 11), PackedInt32Array(19, 11, 9), PackedInt32Array(19, 9, 17)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 400, -16, 400, 240, -16, 240)])
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_saida"]
-radius = 10.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saida"]
+size = Vector2(28, 14)
 
 [node name="Arena" type="Node2D" unique_id=1443955068]
 script = ExtResource("3_arena")
@@ -31,19 +30,13 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAEAAMAAAAAAAEAAAAEAAMAAAAAAAIAAAAEAAM
 tile_set = ExtResource("1_wl4x5")
 
 [node name="Saida" type="Area2D" parent="."]
-visible = false
-position = Vector2(352, 192)
+position = Vector2(192, 8)
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Saida"]
-texture = ExtResource("5_town")
-region_enabled = true
-region_rect = Rect2(48, 144, 32, 32)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
-shape = SubResource("CircleShape2D_saida")
+shape = SubResource("RectangleShape2D_saida")
 
 [node name="Jogador" parent="." unique_id=1578613508 instance=ExtResource("2_olpmc")]
 position = Vector2(192, 112)

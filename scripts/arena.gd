@@ -30,7 +30,9 @@ func _on_horda_timeout() -> void:
 
 # Ficha do tipo Fuga (folha da Aula 09): o relógio não vence mais, ele abre a saída.
 func _on_relogio_timeout() -> void:
-	$Saida.visible = true
+	# Porta de madeira do muro de cima: troca os dois tiles fechados pelos abertos, que não têm colisão.
+	$Navegacao/muro.set_cell(Vector2i(11, 0), 0, Vector2i(10, 2))
+	$Navegacao/muro.set_cell(Vector2i(12, 0), 0, Vector2i(11, 2))
 	$Saida.monitoring = true
 
 func _on_saida_body_entered(_body: Node2D) -> void:
