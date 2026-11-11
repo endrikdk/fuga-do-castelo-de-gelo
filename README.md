@@ -16,5 +16,7 @@ Setas ou WASD movem o personagem nas quatro direções e Espaço ataca: um clar�
 
 ## Créditos
 
-- Tileset: Tiny Town, de Kenney — https://kenney.nl/assets/tiny-town — licença CC0
+- Muro, gárgulas, porta e estandartes: Tiny Dungeon, de Kenney — https://kenney.nl/assets/tiny-dungeon — licença CC0
+- Chão de gelo e neve: Tiny Ski, de Kenney — https://kenney.nl/assets/tiny-ski — licença CC0
+- Portão de saída: Tiny Town, de Kenney — https://kenney.nl/assets/tiny-town — licença CC0
 - Personagem: Prof. Ezefferth, para a Aula 08 de Jogos Digitais II
