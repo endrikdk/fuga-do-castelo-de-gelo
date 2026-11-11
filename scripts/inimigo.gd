@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var vida: int = 1
 
 @onready var agente: NavigationAgent2D = $NavigationAgent2D
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
 	var jogador := get_tree().get_first_node_in_group("player") as Node2D
@@ -16,6 +17,12 @@ func _physics_process(_delta: float) -> void:
 	var proximo := agente.get_next_path_position()
 	velocity = global_position.direction_to(proximo) * velocidade
 	move_and_slide()
+
+	# Arte do tema (feito com ajuda de IA): perto do jogador a gárgula ruge, longe ela anda.
+	if global_position.distance_to(jogador.global_position) < 16:
+		anim.play("atacar")
+	else:
+		anim.play("andar")
 
 func levar_golpe() -> void:
 	vida -= 1

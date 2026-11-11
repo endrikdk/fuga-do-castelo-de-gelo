@@ -1,7 +1,41 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/inimigo.gd" id="1_inimigo"]
-[ext_resource type="Texture2D" path="res://sprites/personagem.png" id="2_textura"]
+[ext_resource type="Texture2D" path="res://sprites/tiny-ski.png" id="2_textura"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_passo1"]
+atlas = ExtResource("2_textura")
+region = Rect2(96, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_passo2"]
+atlas = ExtResource("2_textura")
+region = Rect2(112, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rugido"]
+atlas = ExtResource("2_textura")
+region = Rect2(128, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gargula"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_passo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_passo2")
+}],
+"loop": true,
+"name": &"andar",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rugido")
+}],
+"loop": true,
+"name": &"atacar",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
 size = Vector2(10, 6)
@@ -12,12 +46,11 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_inimigo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-texture = ExtResource("2_textura")
-hframes = 4
-vframes = 4
+sprite_frames = SubResource("SpriteFrames_gargula")
+animation = &"andar"
+autoplay = "andar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
